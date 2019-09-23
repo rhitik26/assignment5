@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+        #t1{
+            margin:50px 0 300px 500px;
+            width:500px;
+            height: 200px;
+        }
+        #row{
+            background-color: rgb(80, 129, 204);
+        }
+        #s1{
+            margin-left: 100px;
+        }
+    </style>
+  
+</head>
+<body>
+    <h1 style="text-align: center">Filter Table</h1>
+    <select id="s1">
+        <option value="Country">Country</option>
+        <option value="Code">Code</option>
+        <option value="Company">Company</option>
+    </select>
+    <input type="text"  id="myinput">
+    <button type="button" onclick="myfunc()">Filter</button>
+    <button type="reset">Reset</button>
+    <div class="container-fluid">
+    <table border="1" id="t1">
+        <tr id="row">
+            <td>Country</td>
+            <td>Code</td>
+            <td>Company</td>
+        </tr>
+        <tr>
+            <td>USA</td>
+            <td>USA</td>
+            <td>Apple</td>
+        </tr>
+        <tr>
+            <td>China</td>
+            <td>ch</td>
+            <td>Redmi</td>
+        </tr>
+        <tr>
+            <td>Japan</td>
+            <td>J</td>
+            <td>SamSung</td>
+        </tr>
+    </table>
+</div>
+</body>
+<script>
+    function myfunc(){
+        var td,i,j,txtvalue;
+        var s=document.getElementById("s1").value;
+        var input=document.getElementById("myinput");
+        var filter=input.value.toUpperCase();
+        var table=document.getElementById("t1");
+        var tr=table.getElementsByTagName("tr");
+        if(s=='Country'){
+            for (i=0;i<tr.length;i++)
+            {
+                td=tr[i].getElementsByTagName("td")[0];
+                if(td){
+                    txtvalue=td.textContent||td.innerText;
+                    if(txtvalue.toUpperCase().indexOf(filter)>-1){
+                        tr[i].style.display="";
+                        tr[i].style.background="rgb(28,230,213)"
+                    }
+                    else{
+                        tr[i].style.display="none";
+                    }
+                }
+            }
+        }
+        else if(s=='Code'){
+            for (i=0;i<tr.length;i++)
+            {
+                td=tr[i].getElementsByTagName("td")[1];
+                if(td){
+                    txtvalue=td.textContent||td.innerText;
+                    if(txtvalue.toUpperCase().indexOf(filter)>-1){
+                        tr[i].style.display="";
+                        tr[i].style.background="rgb(149, 216, 178)";
+                    }
+                    else{
+                        tr[i].style.display="none";
+                    }
+                }
+            }
+        }
+        else{
+            for (i=0;i<tr.length;i++)
+            {
+                td=tr[i].getElementsByTagName("td")[2];
+                if(td){
+                    txtvalue=td.textContent||td.innerText;
+                    if(txtvalue.toUpperCase().indexOf(filter)>-1){
+                        tr[i].style.display="";
+                        tr[i].style.background="wheat";
+                    }
+                    else{
+                        tr[i].style.display="none";
+                    }
+                }
+            }
+        }
+    }
+</script>
+</html>
